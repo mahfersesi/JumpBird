@@ -21,6 +21,12 @@ public partial class MainPage : ContentPage
 	{
 		AplicaGravidade();
 		GerenciaCanos();
+		if (VerificaColisao())
+		{
+			estaMorto=true;
+			GameOverFrame.IsVisible=true;
+			break;
+		}
 		await Task.Delay(TempoEntreFrames);
 	}
   }
@@ -62,7 +68,35 @@ public partial class MainPage : ContentPage
 	{
 		Passaro.TranslationY = 0;
 	}
+	bool VerificaColisaoTeto()
+	{
+		var minY=-AlturaJanela/2;
+		if (Passaro.TranslationY <= minY)
+		return true;
+		else
+		return false;
+	}
+	bool VerificaColisaoChao()
+	{
+		var maxY=AlturaJanela/2;
+		if(Passaro.TranslationY >= maxY)
+		return true;
+		else 
+		return false;
+	}
 
+	bool VerificaColisao()
+	{
+		if(! estaMorto)
+		{
+			if(VerificaColisaoTeto() ||
+				VerificaColisaoChao())
+		{
+			return true;
+		}
+		}
+		return false;
+	}
 
 }
 
