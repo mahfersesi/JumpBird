@@ -2,8 +2,11 @@
 
 public partial class MainPage : ContentPage
 {
-
-
+	const int AberturaMinima=200;
+	const int forcaPulo=30;
+	const int maxTempoPulando=3;//frames
+	bool estaPulando=false;	
+	int tempoPulando=0;
 	const int TempoEntreFrames = 25;
 	const int Gravidade = 3;
 	double LarguraJanela;
@@ -19,7 +22,6 @@ public partial class MainPage : ContentPage
   {
 	while (!estaMorto)
 	{
-		AplicaGravidade();
 		GerenciaCanos();
 		if (VerificaColisao())
 		{
@@ -27,9 +29,27 @@ public partial class MainPage : ContentPage
 			GameOverFrame.IsVisible=true;
 			break;
 		}
+		if (estaPulando)
+		  AplicaPulo();
+		else
+			AplicaGravidade();
 		await Task.Delay(TempoEntreFrames);
 	}
   }
+	void AplicaPulo()
+	{
+		Passaro.TranslationY-=forcaPulo;
+		tempoPulando++;
+		if (tempoPulando >= maxTempoPulando)
+		{
+			estaPulando=false;
+			tempoPulando=0;
+		}
+	}
+	void OnGridCliked(object sender, TappedEventArgs e)
+	{
+		estaPulando=true;
+	}
 	void AplicaGravidade()
 	{
 		Passaro.TranslationY += Gravidade;
@@ -53,7 +73,12 @@ public partial class MainPage : ContentPage
 		{
 			imgCanoBaixo.TranslationX = 0;
 			imgCanoCima.TranslationX = 0;
+			var alturaMax=-100;
+			var alturaMin=-imgCanoBaixo.HeightRequest;
+			imgCanoCima.TranslationY=Random.Shared.Next((int)alturaMin, (int)alturaMax);
+			imgCanoBaixo.TranslationY=imgCanoCima.TranslationY+AberturaMinima+imgCanoBaixo.HeightRequest;
 		}
+	
 	}
 
 
