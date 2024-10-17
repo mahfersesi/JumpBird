@@ -9,6 +9,8 @@
     <Grid.GestureRecognizers>
     <TapGestureRecognizer Tapped   ="OnGridCliked"/>
     </Grid.GestureRecognizers>
+       <Label x:Name="LabelScore"
+              VerticalOptions="Start"/>
 
         <Image Source="fundo.png"
                Aspect ="Fill"
@@ -17,23 +19,27 @@
 
         <Image Source="passarinho.png"
                x:Name="Passaro"
-               HorizontalOptions="Center"
+               HorizontalOptions="Start"
                WidthRequest="60"
                HeightRequest="60"/>
 
         <Image Source="canoc.png"
+              BackgroundColor="Pink"
                HorizontalOptions="End"
                x:Name="imgCanoCima"
-               VerticalOptions="Start"
-               
-               HeightRequest="300"/>
+               Aspect="Fill"
+               WidthRequest="60"
+               VerticalOptions="End"
+               HeightRequest="650"/>
 
         <Image Source="canob.png"
                x:Name="imgCanoBaixo"
+               BackgroundColor="Pink"
+               Aspect="Fill"
+               WidthRequest="60"
                HorizontalOptions="End"
                VerticalOptions="End"
-               
-               HeightRequest="300"/>
+               HeightRequest="650"/>
 
         <Image Source="chao.png"
                HorizontalOptions="Fill"

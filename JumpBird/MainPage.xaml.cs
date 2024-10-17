@@ -2,16 +2,17 @@
 
 public partial class MainPage : ContentPage
 {
+	int score=0;
 	const int AberturaMinima=200;
 	const int forcaPulo=30;
 	const int maxTempoPulando=3;//frames
 	bool estaPulando=false;	
 	int tempoPulando=0;
 	const int TempoEntreFrames = 25;
-	const int Gravidade = 3;
+	const int Gravidade = 6;
 	double LarguraJanela;
 	double AlturaJanela;
-	int velocidade = 20;
+	int velocidade = 10;
 	bool estaMorto = true;
 	public MainPage()
 	{
@@ -77,6 +78,8 @@ public partial class MainPage : ContentPage
 			var alturaMin=-imgCanoBaixo.HeightRequest;
 			imgCanoCima.TranslationY=Random.Shared.Next((int)alturaMin, (int)alturaMax);
 			imgCanoBaixo.TranslationY=imgCanoCima.TranslationY+AberturaMinima+imgCanoBaixo.HeightRequest;
+			score++;
+			LabelScore.Text="Canos: "+score.ToString("D3");
 		}
 	
 	}
