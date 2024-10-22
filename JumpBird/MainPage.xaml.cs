@@ -95,10 +95,11 @@ public partial class MainPage : ContentPage
 	void Inicializar()
 	{
 		imgCanoCima.TranslationX=-LarguraJanela;
+		imgCanoCima.TranslationY=-LarguraJanela;
+		imgCanoBaixo.TranslationX=-LarguraJanela;
 		imgCanoBaixo.TranslationY=-LarguraJanela;
 		Passaro.TranslationY = 0;
 		Passaro.TranslationX = 0;
-		score:0;
 		GerenciaCanos();
 	}
 	bool VerificaColisaoTeto()
@@ -129,7 +130,8 @@ public partial class MainPage : ContentPage
 		{
 			if(VerificaColisaoTeto() ||
 				VerificaColisaoChao()||
-				VerificaColisaoCanoCima())
+				VerificaColisaoCanoCima() ||
+				VerificaColisaoCanoBaixo())
 		
 		{
 			return true;
@@ -152,6 +154,22 @@ public partial class MainPage : ContentPage
 			{
 				return false;
 			}
+	}
+	bool VerificaColisaoCanoBaixo()
+	{
+		var posHPassaro=(LarguraJanela/2)-(Passaro.WidthRequest/2);
+		var posVPassaro=(AlturaJanela/2)-(Passaro.HeightRequest/2)+Passaro.TranslationY;
+		if (posHPassaro >=Math.Abs(imgCanoBaixo.TranslationX)-imgCanoBaixo.WidthRequest&&
+			posHPassaro<=Math.Abs(imgCanoBaixo.TranslationX)+imgCanoBaixo.WidthRequest&&
+			posVPassaro<=imgCanoBaixo.HeightRequest+Passaro.TranslationY)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+
 	}
 
 }

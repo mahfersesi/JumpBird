@@ -19,6 +19,7 @@
 
         <Image Source="passarinho.png"
                x:Name="Passaro"
+               BackgroundColor="Pink"
                HorizontalOptions="Start"
                WidthRequest="60"
                HeightRequest="60"/>
