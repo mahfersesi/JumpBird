@@ -94,15 +94,25 @@ public partial class MainPage : ContentPage
 	}
 	void Inicializar()
 	{
+		imgCanoCima.TranslationX=-LarguraJanela;
+		imgCanoBaixo.TranslationY=-LarguraJanela;
 		Passaro.TranslationY = 0;
+		Passaro.TranslationX = 0;
+		score:0;
+		GerenciaCanos();
 	}
 	bool VerificaColisaoTeto()
 	{
 		var minY=-AlturaJanela/2;
 		if (Passaro.TranslationY <= minY)
+		
 		return true;
+		
 		else
+		
 		return false;
+		
+		
 	}
 	bool VerificaColisaoChao()
 	{
@@ -118,12 +128,30 @@ public partial class MainPage : ContentPage
 		if(! estaMorto)
 		{
 			if(VerificaColisaoTeto() ||
-				VerificaColisaoChao())
+				VerificaColisaoChao()||
+				VerificaColisaoCanoCima())
+		
 		{
 			return true;
 		}
 		}
 		return false;
+	}
+
+	bool VerificaColisaoCanoCima()
+	{
+		var posHPassaro=(LarguraJanela/2)-(Passaro.WidthRequest/2);
+		var posVPassaro=(AlturaJanela/2)-(Passaro.HeightRequest/2)+Passaro.TranslationY;
+		if (posHPassaro >=Math.Abs(imgCanoCima.TranslationX)-imgCanoCima.WidthRequest&&
+			posHPassaro<=Math.Abs(imgCanoCima.TranslationX)+imgCanoCima.WidthRequest&&
+			posVPassaro<=imgCanoCima.HeightRequest+Passaro.TranslationY)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 	}
 
 }
