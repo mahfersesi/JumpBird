@@ -27,6 +27,7 @@ public partial class MainPage : ContentPage
 		if (VerificaColisao())
 		{
 			estaMorto=true;
+			SoundHelper.Play("morto.wav");
 			GameOverFrame.IsVisible=true;
 			break;
 		}
