@@ -57,7 +57,8 @@
             </Frame.GestureRecognizers>
 
             <Image Source="gameover.png"/>
-
+              <Label Text="voce passou entre 001 Canos!"
+                     x:Name="LabelCanos"/>
         </Frame>
 
 

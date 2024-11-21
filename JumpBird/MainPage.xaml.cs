@@ -57,9 +57,14 @@ public partial class MainPage : ContentPage
 		Passaro.TranslationY += Gravidade;
 	
 	}
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+		SoundHelper.Play("mscfundo.wav", true);
+    }
 
-	
-	protected override void OnSizeAllocated(double w, double h)
+
+    protected override void OnSizeAllocated(double w, double h)
 	{
 		base.OnSizeAllocated(w, h);
 		LarguraJanela = w;
@@ -92,6 +97,7 @@ public partial class MainPage : ContentPage
 		estaMorto = false;
 		Inicializar();
 		Desenha();
+		LabelCanos.Text= "voce passou por" + score.ToString("D3") +"Canos!!";
 	}
 	void Inicializar()
 	{
@@ -101,6 +107,7 @@ public partial class MainPage : ContentPage
 		imgCanoBaixo.TranslationY=-LarguraJanela;
 		Passaro.TranslationY = 0;
 		Passaro.TranslationX = 0;
+		score=0;
 		GerenciaCanos();
 	}
 	bool VerificaColisaoTeto()
